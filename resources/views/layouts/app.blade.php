@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body  class="containter p-5">
+<body  class="container container-lg  p-2 p-lg-5 ">
 
     <div>
         @yield('content')
