@@ -3,6 +3,9 @@
 @section('title','List Contact')
 @section('content')
 
+@if(Auth::check() )
+    <a class="btn btn-light mb-2" href="{{route('contact.logout')}}" role="button">Logout</a>
+    @endif
 <h3 class="text-center mb-4">List Contact</h3>
 
 @if(session('message'))

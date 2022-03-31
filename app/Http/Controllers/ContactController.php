@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateContact;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
+    //test login fast 
+    public  function loginSet()
+    {
+        Auth::loginUsingId(1);
+        return redirect()->route('contact.index');
+    }
+    public  function logout()
+    {
+        Auth::logout();
+        return redirect()->route('contact.index');
+    }
     public  function index()
     {
         $contacts = Contact::get();
@@ -26,7 +38,7 @@ class ContactController extends Controller
         if (Contact::create($request->all())) {
             return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact created successfully');
         };
-       
+
         return redirect()->route('contact.index');
     }
 
@@ -48,13 +60,13 @@ class ContactController extends Controller
     {
 
         if ($contact = Contact::find($id)) return view('contact.edit', compact('contact'));
-       return redirect()->back();
+        return redirect()->back();
     }
 
     public  function update(StoreUpdateContact $request, $id)
     {
         if ($contact = Contact::find($id)) {
-            
+
             if ($contact->update($request->all())) {
                 return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact updated successfully');
             };
