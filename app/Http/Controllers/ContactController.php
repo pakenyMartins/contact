@@ -22,7 +22,11 @@ class ContactController extends Controller
 
     public  function store(StoreUpdateContact $request)
     {
-        Contact::create($request->all());
+
+        if (Contact::create($request->all())) {
+            return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact created successfully');
+        };
+       
         return redirect()->route('contact.index');
     }
 
@@ -38,5 +42,23 @@ class ContactController extends Controller
             return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact deleted successfully');
         };
         return redirect()->route('contact.index');
+    }
+
+    public  function edit($id)
+    {
+
+        if ($contact = Contact::find($id)) return view('contact.edit', compact('contact'));
+       return redirect()->back();
+    }
+
+    public  function update(StoreUpdateContact $request, $id)
+    {
+        if ($contact = Contact::find($id)) {
+            
+            if ($contact->update($request->all())) {
+                return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact updated successfully');
+            };
+        }
+        return redirect()->back();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateContact extends FormRequest
@@ -23,10 +23,13 @@ class StoreUpdateContact extends FormRequest
      */
     public function rules()
     {
+        $id= $this->segment(2);
         return [
+           
             'name' => ['required', 'min:5'],
-            'contact' => ['required','unique:contacts', 'numeric', 'digits:9'],
-            'email' => ['required','unique:contacts', 'email'],
+            'contact' => ['required', 'numeric', 'digits:9',  Rule::unique('contacts')->ignore($id)],
+            'email' => ['required', 'email',   Rule::unique('contacts')->ignore($id) ],
+            
         ];
     }
 }

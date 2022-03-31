@@ -12,7 +12,7 @@
         <h6 class="card-title">Email: {{$contact->email}}</h6>
         <h6 class="card-title">Contact: {{$contact->contact}}</h6>
 
-        <a class="btn btn-success mb-2" href="{{route('contact.show', $contact->id)}}" role="button">Edit</a>
+        <a class="btn btn-success mb-2" href="{{route('contact.edit', $contact->id)}}" role="button">Edit</a>
 
         <form action="{{route('contact.destroy', $contact->id)}}" method="post">
             @csrf
