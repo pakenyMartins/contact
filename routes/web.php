@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
 Route::get('/contact/create',[ContactController::class,'create'])->name('contact.create');
 Route::get('/',[ContactController::class,'index'])->name('contact.index');
+
+Route::post('/contact/edit/{id}',[ContactController::class,'edit'])->name('contact.edit');
+Route::delete('/contact/{id}',[ContactController::class,'destroy'])->name('contact.destroy');
+Route::get('/contact/{id}',[ContactController::class,'show'])->name('contact.show');
+
 
 
 

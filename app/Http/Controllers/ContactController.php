@@ -25,4 +25,18 @@ class ContactController extends Controller
         Contact::create($request->all());
         return redirect()->route('contact.index');
     }
+
+    public  function show($id)
+    {
+        $contact = Contact::find($id);
+        if ($contact) return view('contact.show', compact('contact'));
+        return redirect()->route('contact.index');
+    }
+    public  function destroy($id)
+    {
+        if (Contact::find($id)->delete()) {
+            return redirect()->route('contact.index')->with('type', 'success')->with('message', 'Contact deleted successfully');
+        };
+        return redirect()->route('contact.index');
+    }
 }
