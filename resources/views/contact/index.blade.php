@@ -38,7 +38,7 @@
             <td>{{$contact->email}}</td>
             <td>{{$contact->contact}}</td>
             <td><a class="btn btn-success" href="{{route('contact.edit', $contact->id)}}" role="button">Edit</a></td>
-            <td><a class="btn btn-info" href="{{route('contact.show', $contact->id)}}" role="button">Delete</a></td>
+            <td><a class="btn btn-info" href="{{route('contact.show', $contact->id)}}" role="button">Detail</a></td>
             <td>
                 <form action="{{route('contact.destroy', $contact->id)}}" method="post">
                     @csrf
